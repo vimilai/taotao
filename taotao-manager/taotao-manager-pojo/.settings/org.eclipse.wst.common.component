@@ -2,5 +2,7 @@
     <wb-module deploy-name="taotao-manager-pojo">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/.settings"/>
+        <wb-resource deploy-path="/" source-path="/src/main"/>
     </wb-module>
 </project-modules>
