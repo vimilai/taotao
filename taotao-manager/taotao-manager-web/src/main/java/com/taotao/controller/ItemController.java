@@ -13,7 +13,6 @@ import com.taotao.service.ItemService;
 @Controller
 public class ItemController {
 	
-	
 	@Autowired
 	private ItemService itemService;
 	
@@ -23,4 +22,6 @@ public class ItemController {
 	public TbItem getItemById(@PathVariable @Value("itemId")Long itemId){
 			return	itemService.getItemByid(itemId);
 	} 
+	
+	
 }
