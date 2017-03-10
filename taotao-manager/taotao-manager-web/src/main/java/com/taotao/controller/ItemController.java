@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.taotao.common.utils.TaotaoResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
 
@@ -22,6 +24,10 @@ public class ItemController {
 	public TbItem getItemById(@PathVariable @Value("itemId")Long itemId){
 			return	itemService.getItemByid(itemId);
 	} 
-	
+	@RequestMapping(value="item/save",method=RequestMethod.POST)
+	@ResponseBody
+	public TaotaoResult itemSave(TbItem item){
+		return itemService.itemSave(item);
+	}
 	
 }
