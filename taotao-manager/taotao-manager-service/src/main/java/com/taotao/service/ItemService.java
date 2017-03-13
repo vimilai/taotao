@@ -9,5 +9,5 @@ public interface ItemService {
 		
 	TbItem getItemByid(long id);
 	EUDataGridResult getItemList(int page,int rows);
-	TaotaoResult itemSave(TbItem item);
+	TaotaoResult itemSave(TbItem item,String desc);
 }
