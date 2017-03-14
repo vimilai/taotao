@@ -1171,8 +1171,8 @@ $.extend(jdModelCallCenter, {autoLocation: function(a) {
 //http://d.360buy.com/configs/get?type=JSON
 var category = {OBJ: $("#_JD_ALLSORT"),
 		//URL_Serv: "http://manage.taotao.com/web/itemcat/all?callback=category.getDataService",
-		URL_Serv: "http://127.0.0.1:8081/rest/itemcat/all?callback=category.getDataService",
-		//URL_Serv: "http://localhost:8082/category.json",
+		URL_Serv: "http://127.0.0.1:8081/rest/itemcat/list?callback=category.getDataService",
+		//URL_Serv: "http://localhost:8081/rest/category.json",
 		URL_BrandsServ: "http://d.360buy.com/brandVclist2/get?callback=category.getBrandService&ids=a,9211,9212^b,9214,9215^c,9217,9218^d,9220,9221^e,9223,9224^f,9226,9227^g,9229,9230^h,9232,9233^m,9235,9236^i,9238,9239^j,9241,9242^p,9244,9245^k,9247,9248^l,9250,9251",
 		FN_GetLink: function(a, b) {
 	        var c, d;
@@ -1223,6 +1223,9 @@ var category = {OBJ: $("#_JD_ALLSORT"),
     },FN_GetBrands: function() {
       //  $.getJSONP(this.URL_BrandsServ, category.getBrandService)
     },getDataService: function(a) {
+    	debugger;
+    	a=JSON.parse(a);
+    	alert(a.data);
         var b = [], c = this;
         $.each(a.data, function(a) {
             this.index = a, "l" == this.t && (this.i = c.FN_RefactorJSON(this.i, 7)), b.push(c.renderItem(this, a))
@@ -1235,6 +1238,7 @@ var category = {OBJ: $("#_JD_ALLSORT"),
             var b, c, g = document.documentElement.scrollTop + document.body.scrollTop, h = $("#nav-2013").offset().top + 39;
             h >= g ? (c = a.hasClass("fore13") ? 3 : 3, g = c) : (b = a.offset().top, g = g > b - 5 ? b - h - 10 : Math.max(3, g - h));
             var i = a.find(".i-mc");
+            
             if (i.css({top: g + "px"}), d.OBJ.find("iframe")) {
                 var j = i.outerWidth() + e, k = i.outerHeight() > f ? i.outerHeight() : f;
                 d.OBJ.find("iframe").css({width: j,height: k,top: g})
@@ -1243,7 +1247,7 @@ var category = {OBJ: $("#_JD_ALLSORT"),
     },getRightAreaTPL: function(a) {
         var b = "", c = "", d = "", e = "";
         return b = this.FN_SetLink(a), c = '{if p.length!=0}<dl class="categorys-promotions">    <dd>        <ul>            {for item in p}            <li>                <a href="${item.u}" target="_blank">                {if item.i}                    <img src="${item.i}" width="194" height="70" title="${item.n}" style="margin-bottom: 4px;" />                {else}                    ${item.n}                {/if}                </a>            </li>            {/for}        </ul>    </dd></dl>{/if}', d = '{if b.length!=0}<dl class="categorys-brands">    {if id=="k"}        <dt>\u63a8\u8350\u54c1\u724c\u51fa\u7248\u5546/\u4e66\u5e97</dt>    {else}        {if id=="l"}        <dt>\u63a8\u8350\u4ea7\u54c1</dt>        {else}        <dt>\u63a8\u8350\u54c1\u724c</dt>        {/if}    {/if}    <dd>        <ul>            {for item in b} <li><a href="${item.u}" target="_blank">${item.n}</a></li> {/for}        </ul>    </dd></dl>{/if}', e = /c|b|d/.test(a) ? b + d + c : b + c + d
-    },getBrandService: function(a) {
+    },getBrandService: function(a) {	
         var b = this, c = a.data;
         this.OBJ.attr("load", "2"), $.each(c, function() {
             var a = this.id, c = b.getRightAreaTPL(a);
