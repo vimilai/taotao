@@ -8,5 +8,5 @@ import com.taotao.common.utils.TaotaoResult;
 public interface ContentCategoryService {
 	List<EUTreeNode> getContentCategoryList(long parentid);
 	TaotaoResult insertContentCategory(long parentId, String name);
-	TaotaoResult deleteContentCategory(long parentId, long id);
+	TaotaoResult deleteContentCategory( long id);
 }
