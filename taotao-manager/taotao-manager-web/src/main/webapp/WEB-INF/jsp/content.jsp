@@ -48,7 +48,7 @@ var contentListToolbar = [{
     		return ;
     	}
     	TT.createWindow({
-			url : "/content-add"
+			url : "content-add"
 		}); 
     }
 },{
