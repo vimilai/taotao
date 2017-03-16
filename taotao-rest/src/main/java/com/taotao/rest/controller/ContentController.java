@@ -23,8 +23,16 @@ public class ContentController {
 	@RequestMapping("/list/{contentCategoryId}")
 	@ResponseBody
 	public TaotaoResult getContentList(@PathVariable Long contentCategoryId) {
+		
+		//从缓存中取如果没有从数据库查
+		
+		
 		try {
 			List<TbContent> list = contentService.getContentList(contentCategoryId);
+			//将数据添加到缓存中
+			
+			
+			
 			return TaotaoResult.ok(list);
 		} catch (Exception e) {
 			e.printStackTrace();
