@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.common.pojo.EUDataGridResult;
+import com.taotao.common.utils.FtpUtil;
+import com.taotao.common.utils.HttpClientUtil;
 import com.taotao.common.utils.TaotaoResult;
 import com.taotao.mapper.TbContentMapper;
 import com.taotao.pojo.TbContent;
@@ -20,6 +23,12 @@ public class ContentServiceImpl implements ContentService {
 
 	@Autowired
 	TbContentMapper tbContentMapper;
+	
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+	@Value("${INDEX_CONTENT_URL}")
+	private String INDEX_CONTENT_URL;
+	
 	@Override
 	public EUDataGridResult getContentList(int page,int rows,long categoryId) {
 		TbContentExample contentExample=new TbContentExample();
@@ -39,7 +48,8 @@ public class ContentServiceImpl implements ContentService {
 				content.setCreated(new Date());
 				content.setUpdated(new Date());
 				tbContentMapper.insert(content);
-				
+				//调用rest服务通知redis缓存删除key
+				HttpClientUtil.doGet(REST_BASE_URL+INDEX_CONTENT_URL+content.getCategoryId());
 				return TaotaoResult.ok();
 	}
 

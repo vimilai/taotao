@@ -59,8 +59,9 @@ public class JedisTest {
 	 */
 	@Test
 	public void testJedisSpringSingle(){
+		
 		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("classpath:/resources/spring/applicationContext-*.xml");
-		JedisPool pool = (JedisPool) applicationContext.getBean("jedisClient");
+		JedisPool pool = (JedisPool) applicationContext.getBean("redisClient");
 		Jedis jedis = pool.getResource();
 		System.out.println(jedis.get("key1"));
 		jedis.close();
