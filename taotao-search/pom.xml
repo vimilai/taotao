@@ -6,9 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.taotao</groupId>
-  <artifactId>taotao-rest</artifactId>
+  <artifactId>taotao-search</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+  
   <dependencies>
   	<dependency>
 			<groupId>com.taotao</groupId>
@@ -52,10 +54,6 @@
 			<scope>provided</scope>
 		</dependency>
   		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-		</dependency>
-		<dependency>
 				<groupId>org.apache.solr</groupId>
 				<artifactId>solr-solrj</artifactId>
 			</dependency>
@@ -68,8 +66,8 @@
    						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<configuration>
-							<port>8081</port>
-							<path>/rest</path>
+							<port>8083</port>
+							<path>/search</path>
 						</configuration>
    				</plugin>
    				
