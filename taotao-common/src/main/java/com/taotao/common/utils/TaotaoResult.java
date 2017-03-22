@@ -119,7 +119,7 @@ public class TaotaoResult {
     public static TaotaoResult format(String json) {
         try {
             return MAPPER.readValue(json, TaotaoResult.class);
-        } catch (Exception e) {
+        } catch (Exception e) {	
             e.printStackTrace();
         }
         return null;
